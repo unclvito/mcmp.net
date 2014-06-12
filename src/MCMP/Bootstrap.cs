@@ -30,6 +30,9 @@ namespace MCMP
 		{
 			try
 			{
+				// If we are in an active session and not cookieless,
+				// get a distinct list of cookies required for each mod_cluster
+				// and add it to the current cookie collection
 				if (HttpContext.Current != null
 					&& HttpContext.Current.Session != null
 					&& !HttpContext.Current.Session.IsCookieless)
