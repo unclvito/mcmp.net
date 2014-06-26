@@ -235,6 +235,20 @@ namespace MCMP.Configuration
 				}
 			}
 
+			[ConfigurationProperty("domain", IsRequired = false)]
+			[StringValidator(InvalidCharacters = "~!@#$%^&*()[]{}/;'\"|\\", MinLength = 1, MaxLength = 30)]
+			public String Domain
+			{
+				get
+				{
+					return (String)this["domain"];
+				}
+				set
+				{
+					this["domain"] = value;
+				}
+			}
+
 			[ConfigurationProperty("jvmroute", IsRequired = false)]
 			[StringValidator(InvalidCharacters = "~!@#$%^&*()[]{}/;'\"|\\", MaxLength = 30)]
 			public String JvmRoute
@@ -442,6 +456,8 @@ namespace MCMP.Configuration
 					clientConfiguration.JvmRoute = mcmpConfig.Application.JvmRoute;
 				if (mcmpConfig.Application.Balancer != null)
 					clientConfiguration.Balancer = mcmpConfig.Application.Balancer;
+				if (mcmpConfig.Application.Domain != null)
+					clientConfiguration.Domain = mcmpConfig.Application.Domain;
 				if (mcmpConfig.Application.Alias != null)
 					clientConfiguration.Alias = mcmpConfig.Application.Alias;
 				if (mcmpConfig.Application.AppRootPath != null)
